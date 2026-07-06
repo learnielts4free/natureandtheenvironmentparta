@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyên Đề Môi Trường (Environment & Ecology) - Ms Lê Hằng English</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #00B894;
+            --accent-color: #FFEAA7;
+            --success-color: #00D26A;
+            --danger-color: #FF4757;
+            --text-color: #2D3436;
+            --card-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Quicksand', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 10px;
+            overflow-x: hidden;
+            position: relative;
+            background: linear-gradient(-45deg, #00B894, #00CEC9, #0984E3, #6C5CE7);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
+            color: var(--text-color);
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+            opacity: 0.1;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23ffffff'%3E%3Cpath d='M40 10a5 5 0 0 0-5 5v10a5 5 0 0 0 10 0V15a5 5 0 0 0-5-5zm-20 20a5 5 0 0 0-5 5v10a5 5 0 0 0 10 0V35a5 5 0 0 0-5-5zm40 0a5 5 0 0 0-5 5v10a5 5 0 0 0 10 0V35a5 5 0 0 0-5-5z'/%3E%3C/g%3E%3C/svg%3E");
+            animation: patternMove 30s linear infinite;
+        }
+
+        @keyframes patternMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 400px 400px; }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            z-index: 1;
+            position: relative;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 12px 20px;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            border: 2px solid #fff;
+        }
+
+        header h5 {
+            font-size: 1.1rem;
+            color: #0984E3;
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+        }
+
+        .section-title {
+            background: #2D3436;
+            color: #FFF;
+            padding: 12px 20px;
+            border-radius: 14px;
+            margin: 30px 0 15px 0;
+            font-size: 1.25rem;
+            font-weight: 900;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .alert-box {
+            background: #FFEAA7;
+            border: 3px dashed #FF9F43;
+            border-radius: 18px;
+            padding: 18px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 700;
+            box-shadow: 0 6px 0 #FF9F43;
+            line-height: 1.6;
+        }
+
+        .alert-title {
+            color: #D63031;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            display: block;
+            font-weight: 900;
+        }
+
+        .quiz-card {
+            background: var(--card-bg);
+            border-radius: 22px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 0px rgba(0,0,0,0.06), 0 16px 20px rgba(0,0,0,0.04);
+            border: 3px solid #FFF;
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+
+        .question-text {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+            line-height: 1.6;
+        }
+
+        .options-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .option-btn {
+            background: #FFF;
+            border: 3px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 14px 20px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-align: left;
+            cursor: pointer;
+            outline: none;
+            box-shadow: 0 5px 0 #E2E8F0;
+            transition: all 0.1s ease;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 0 #CBD5E1;
+            background-color: #F8FAFC;
+        }
+
+        .option-btn:active:not(:disabled) {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #CBD5E1;
+        }
+
+        .option-btn.correct {
+            background-color: #E8FDF0 !important;
+            border-color: var(--success-color) !important;
+            color: #0E6237 !important;
+            box-shadow: 0 5px 0 var(--success-color) !important;
+        }
+
+        .option-btn.wrong {
+            background-color: #FFEBEB !important;
+            border-color: var(--danger-color) !important;
+            color: #991B1B !important;
+            box-shadow: 0 5px 0 var(--danger-color) !important;
+        }
+
+        .explanation-box {
+            margin-top: 20px;
+            background: #F8F9FA;
+            border-left: 6px solid #00B894;
+            border-radius: 8px;
+            padding: 18px;
+            display: none;
+            animation: slideDown 0.3s ease-out forwards;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .explanation-title {
+            font-weight: 900;
+            color: #00B894;
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+
+        .exp-section {
+            margin-bottom: 8px;
+            font-size: 0.98rem;
+            line-height: 1.6;
+        }
+
+        .shake {
+            animation: shakeAnim 0.4s ease-in-out;
+        }
+
+        @keyframes shakeAnim {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+
+        .submit-container {
+            text-align: center;
+            margin: 40px 0 70px 0;
+        }
+
+        .btn-submit {
+            background: #FF7675;
+            color: white;
+            border: none;
+            padding: 16px 50px;
+            font-size: 1.35rem;
+            font-weight: 900;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 7px 0 #E84393;
+            transition: all 0.1s;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 9px 0 #E84393;
+        }
+
+        .btn-submit:active {
+            transform: translateY(5px);
+            box-shadow: 0 2px 0 #E84393;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: #FFF;
+            border-radius: 24px;
+            padding: 35px 25px;
+            max-width: 550px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border: 4px solid var(--accent-color);
+            animation: scaleUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes scaleUp {
+            from { transform: scale(0.85); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-title {
+            font-size: 1.7rem;
+            font-weight: 900;
+            color: #0984E3;
+            margin-bottom: 12px;
+        }
+
+        .modal-score {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--success-color);
+            margin: 10px 0;
+        }
+
+        .modal-comment {
+            font-size: 1.1rem;
+            font-weight: 700;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #444;
+        }
+
+        .btn-close-modal {
+            background: #00B894;
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 15px;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #009473;
+        }
+
+        #confetti-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 99;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="confetti-canvas"></canvas>
+
+    <div class="container">
+        <header>
+            <h5>Giáo viên tạo: Ms Lê Hằng English</h5>
+        </header>
+
+        <div class="alert-box">
+            <span class="alert-title">⚠️ LỜI NHẮC CỰC KỲ QUAN TRỌNG ⚠️</span>
+            Chỉ có đọc kỹ giải thích ngay sau mỗi câu, sau đó ghi lại từ vựng/cấu trúc mới vào vở để học thì mới thực sự giỏi lên.<br>
+            Làm cho xong mà không đọc giải thích hay đọc qua loa không ghi chép thì chỉ tốn thời gian vô ích!<br>
+            <span style="color: #0984E3; display:block; margin-top:5px; font-weight:900;">* Kéo tới đâu, làm tới đó! *</span>
+        </div>
+
+        <div id="quiz-wrapper"></div>
+
+        <div class="submit-container">
+            <button class="btn-submit" onclick="submitQuiz()">Nộp Bài Báo Điểm 🏆</button>
+        </div>
+    </div>
+
+    <div id="scoreModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-title">Kết Quả Thử Thách 🌟</div>
+            <div class="modal-score" id="modalScoreText">0/0</div>
+            <div class="modal-comment" id="modalCommentText">Đang chấm điểm...</div>
+            <button class="btn-close-modal" onclick="closeModal()">Làm lại bài thi 🔄</button>
+        </div>
+    </div>
+
+    <script>
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        let audioCtx = null;
+        function initAudio() { if (!audioCtx) audioCtx = new AudioCtx(); }
+        function playSound(type) {
+            try {
+                initAudio(); if (!audioCtx) return;
+                const now = audioCtx.currentTime;
+                if (type === 'correct') {
+                    const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain();
+                    osc.type = 'sine'; osc.frequency.setValueAtTime(523.25, now); osc.frequency.setValueAtTime(659.25, now + 0.08);
+                    gain.gain.setValueAtTime(0.25, now); gain.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
+                    osc.connect(gain); gain.connect(audioCtx.destination); osc.start(now); osc.stop(now + 0.35);
+                } else {
+                    const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain();
+                    osc.type = 'triangle'; osc.frequency.setValueAtTime(150, now); osc.frequency.linearRampToValueAtTime(80, now + 0.3);
+                    gain.gain.setValueAtTime(0.25, now); gain.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
+                    osc.connect(gain); gain.connect(audioCtx.destination); osc.start(now); osc.stop(now + 0.35);
+                }
+            } catch (e) {}
+        }
+
+        const canvas = document.getElementById('confetti-canvas'); const ctx = canvas.getContext('2d');
+        let confettiPieces = []; let animationFrameId = null;
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resizeCanvas); resizeCanvas();
+        function createConfetti() {
+            confettiPieces = [];
+            for (let i = 0; i < 70; i++) {
+                confettiPieces.push({
+                    x: Math.random() * canvas.width, y: Math.random() * canvas.height - canvas.height,
+                    r: Math.random() * 5 + 4, d: Math.random() * canvas.height,
+                    color: `hsl(${Math.random() * 360}, 100%, 65%)`, tilt: Math.random() * 10 - 5,
+                    tiltAngleIncremental: Math.random() * 0.06 + 0.02, tiltAngle: 0
+                });
+            }
+            if(animationFrameId) cancelAnimationFrame(animationFrameId); animateConfetti();
+        }
+        function animateConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); let active = false;
+            confettiPieces.forEach((p) => {
+                p.tiltAngle += p.tiltAngleIncremental; p.y += (Math.cos(p.d) + 3 + p.r / 2) / 2; p.x += Math.sin(p.tiltAngle); p.tilt = Math.sin(p.tiltAngle - p.r / 2) * 4;
+                if (p.y <= canvas.height) active = true;
+                ctx.beginPath(); ctx.lineWidth = p.r; ctx.strokeStyle = p.color;
+                ctx.moveTo(p.x + p.tilt + p.r / 2, p.y); ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 2); ctx.stroke();
+            });
+            if (active) animationFrameId = requestAnimationFrame(animateConfetti);
+            else ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        const rawQuizData = [
+            // PART 1: SYNONYMS
+            {
+                "section": "Synonyms (Từ Đồng Nghĩa)",
+                "question": "The government’s failure to regulate industrial waste has <u>exacerbated</u> the ecological crisis in the region.",
+                "options": ["allevitated", "mitigated", "aggravated", "circumvented"],
+                "correctIndex": 2,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Sự thất bại của chính phủ trong việc kiểm soát rác thải công nghiệp đã làm trầm trọng thêm cuộc khủng hoảng sinh thái ở khu vực này.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>exacerbate</i> (v): làm trầm trọng thêm, làm xấu đi một tình trạng tồi tệ sẵn có.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn C. <i>aggravated</i> (v): làm trầm trọng thêm, làm nặng thêm tai hại $\equiv$ exacerbated.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. làm dịu (viết sai chính tả). B. giảm thiểu nhẹ bớt. D. né tránh lách luật.</div>"
+            },
+            {
+                "section": "Synonyms (Từ Đồng Nghĩa)",
+                "question": "Many coastal ecosystems are currently in a <u>precarious</u> state due to the rising acidity of the oceans.",
+                "options": ["perilous", "resilient", "robust", "stable"],
+                "correctIndex": 0,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Nhiều hệ sinh thái ven biển hiện đang bấp bênh/nguy ngập do độ axit ngày càng tăng của đại dương.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>precarious</i> (adj): bấp bênh, không ổn định, đầy hiểm họa hiểm nghèo.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn A. <i>perilous</i> (adj): hiểm nghèo, nguy hiểm, đầy rủi ro đe dọa sinh mệnh.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> B. kiên cường, mau phục hồi. C. cường tráng khỏe khoắn. D. ổn định vững vàng.</div>"
+            },
+            {
+                "section": "Synonyms (Từ Đồng Nghĩa)",
+                "question": "The <u>pristine</u> landscapes of the Antarctic are being threatened by the increasing presence of microplastics.",
+                "options": ["spoiled", "industrial", "contaminated", "untouched"],
+                "correctIndex": 3,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Những cảnh quan nguyên sơ của Nam Cực đang bị đe dọa bởi sự hiện diện ngày càng tăng của các mảnh vi nhựa.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>pristine</i> (adj): nguyên sơ, thuần khiết, trong lành chưa từng bị bàn tay con người hay ô nhiễm xâm hại.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn D. <i>untouched</i> (adj): còn nguyên vẹn, chưa bị đụng chạm biến đổi $\equiv$ pristine.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. bị làm hư hỏng. B. thuộc công nghiệp. C. bị ô nhiễm.</div>"
+            },
+            {
+                "section": "Synonyms (Từ Đồng Nghĩa)",
+                "question": "We need a <u>holistic</u> approach to urban planning that integrates green spaces with high-density housing.",
+                "options": ["fragmented", "comprehensive", "superficial", "specialized"],
+                "correctIndex": 1,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Chúng ta cần một cách tiếp cận toàn diện đối với quy hoạch đô thị, tích hợp không gian xanh với nhà ở mật độ cao.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>holistic</i> (adj): mang tính toàn diện, tổng thể, xem xét mọi mối quan hệ hữu cơ thay vì cắt xén nhỏ lẻ.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn B. <i>comprehensive</i> (adj): bao hàm toàn diện, sâu rộng đầy đủ, đồng nghĩa sát nhất.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. bị chia rẽ, manh mún. C. hời hợt trên bề mặt. D. mang tính chuyên môn hóa hẹp.</div>"
+            },
+            {
+                "section": "Synonyms (Từ Đồng Nghĩa)",
+                "question": "The <u>proliferation</u> of invasive species often leads to the displacement of native flora and fauna.",
+                "options": ["reduction", "rapid increase", "stabilization", "disappearance"],
+                "correctIndex": 1,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Sự gia tăng nhanh chóng của các loài xâm lấn thường dẫn đến sự thay thế đẩy lùi quần thể thực vật và động vật bản địa.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>proliferation</i> (n): sự bùng nổ số lượng, sự sinh sôi nảy nở tăng nhanh chóng (đã gặp ở chuyên đề Đô thị hóa).</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn B. <i>rapid increase</i> (sự tăng trưởng nhanh chóng vượt bậc).</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. sự giảm bớt. C. sự ổn định. D. sự biến mất.</div>"
+            },
+            {
+                "section": "Synonyms (Từ Đồng Nghĩa)",
+                "question": "The report highlights the <u>irreversible</u> damage caused to the Great Barrier Reef by coral bleaching.",
+                "options": ["temporary", "repairable", "permanent", "minimal"],
+                "correctIndex": 2,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Báo cáo nêu bật những thiệt hại không thể đảo ngược gây ra cho rạn san hô Great Barrier do hiện tượng tẩy trắng san hô.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>irreversible</i> (adj): không thể đảo ngược, không thể cứu vãn phục hồi lại trạng thái cũ.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn C. <i>permanent</i> (adj): vĩnh viễn, cố định lâu dài, đồng nghĩa trong văn cảnh tác hại sinh thái.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. tạm thời. B. có thể sửa chữa phục hồi. D. ở mức tối thiểu.</div>"
+            },
+            {
+                "section": "Synonyms (Từ Đồng Nghĩa)",
+                "question": "Environmental activists are trying to <u>curb</u> the discharge of untreated sewage into the Mediterranean Sea.",
+                "options": ["promote", "restrict", "encourage", "stimulate"],
+                "correctIndex": 1,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Các nhà hoạt động môi trường đang cố gắng kiềm chế/hạn chế việc xả nước thải chưa qua xử lý vào Biển Địa Trung Hải.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>curb</i> (v): kiềm chế, nén lại, giới hạn kiểm soát (đã xuất hiện làm từ trái nghĩa ở bài trước).</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn B. <i>restrict</i> (v): hạn chế, thu hẹp, giới hạn hành vi cấm đoán.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. thúc đẩy. C. khuyến khích. D. kích thích phát triển.</div>"
+            },
+            {
+                "section": "Synonyms (Từ Đồng Nghĩa)",
+                "question": "The <u>interdependence</u> of all living organisms within an ecosystem ensures its overall health.",
+                "options": ["interconnectedness", "autonomy", "isolation", "detachment"],
+                "correctIndex": 0,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Sự phụ thuộc lẫn nhau của tất cả các sinh vật sống trong một hệ sinh thái đảm bảo sức khỏe tổng thể của hệ đó.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>interdependence</i> (n): tính phụ thuộc ràng buộc lẫn nhau giữa các mắt xích sinh thái.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn A. <i>interconnectedness</i> (n): tính kết nối đan xen chặt chẽ ràng buộc lẫn nhau.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> B. sự tự trị tự quyết. C. sự cô lập. D. sự thờ ơ chia tách rời rạc.</div>"
+            },
+            {
+                "section": "Synonyms (Từ Đồng Nghĩa)",
+                "question": "Carbon <u>sequestration</u> is considered a vital technology in the fight against anthropogenic climate change.",
+                "options": ["capture", "emission", "release", "diffusion"],
+                "correctIndex": 0,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Sự cô lập/thu giữ carbon được coi là một công nghệ sống còn trong cuộc chiến chống lại biến đổi khí hậu do con người gây ra.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>carbon sequestration</i> (n-thuật ngữ khí hậu): quá trình thu giữ và lưu trữ/cô lập khí CO2 bền vững dài hạn trong lòng đất hoặc đại dương để tránh hiệu ứng nhà kính.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn A. <i>capture</i> (n): sự thu giữ, giam hãm giữ lại, tương đồng bản chất công nghệ.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> B. khí thải, sự phát thải. C. sự phóng thích xả ra. D. sự khuếch tán lan rộng.</div>"
+            },
+            {
+                "section": "Synonyms (Từ Đồng Nghĩa)",
+                "question": "The local community showed great <u>resilience</u> in the aftermath of the devastating typhoon.",
+                "options": ["weakness", "adaptability", "fragility", "vulnerability"],
+                "correctIndex": 1,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Cộng đồng địa phương đã thể hiện sự kiên cường/khả năng phục hồi tuyệt vời sau trận bão tàn khốc.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>resilience</i> (n): tính kiên cường, khả năng mau phục hồi vết thương/thiên tai, khả năng chống chịu bền bỉ chịu đựng và tự thích nghi tốt lên.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn B. <i>adaptability</i> (n): năng lực thích ứng, linh hoạt xoay chuyển tình thế phục hồi hoàn cảnh, sát nghĩa sắc thái nhất.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. sự yếu đuối. C. sự mong manh dễ vỡ. D. tính dễ bị tổn thương tổn hại.</div>"
+            },
+            {
+                "section": "Synonyms (Từ Đồng Nghĩa)",
+                "question": "The <u>depletion</u> of fossil fuel reserves has forced many nations to invest heavily in green technology.",
+                "options": ["accumulation", "exhaustion", "abundance", "surplus"],
+                "correctIndex": 1,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Sự cạn kiệt các nguồn dự trữ nhiên liệu hóa thạch đã buộc nhiều quốc gia phải đầu tư mạnh mẽ vào công nghệ xanh.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>depletion</i> (n): sự sụt giảm, sự cạn kiệt nghiêm trọng tài nguyên.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn B. <i>exhaustion</i> (n): tình trạng cạn kiệt hoàn toàn, hút sạch không còn gì $\equiv$ depletion.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. sự tích lũy. C. sự phong phú dồi dào. D. lượng thặng dư dư thừa.</div>"
+            },
+            {
+                "section": "Synonyms (Từ Đồng Nghĩa)",
+                "question": "Many nomadic tribes lead a <u>sustainable</u> lifestyle that has remained unchanged for centuries.",
+                "options": ["extravagant", "viable", "destructive", "fleeting"],
+                "correctIndex": 1,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Nhiều bộ lạc du mục duy trì lối sống bền vững, điều đã duy trì không đổi trong nhiều thế kỷ.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>sustainable</i> (adj): bền vững, có khả năng duy trì phát triển lâu dài không gây cạn kiệt hủy hoại hệ thống. Trong ngữ cảnh đời sống tồn tại tốt, từ đồng nghĩa học thuật là viable.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn B. <i>viable</i> (adj): khả thi, có khả năng tồn tại, phát triển độc lập lâu dài và sinh tồn tốt.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. hoang phí phung phí. C. có tính hủy hoại tàn phá. D. thoáng qua phai nhạt mau chóng.</div>"
+            },
+            {
+                "section": "Synonyms (Từ Đồng Nghĩa)",
+                "question": "The <u>implications</u> of global warming for food security are profoundly alarming.",
+                "options": ["origins", "consequences", "causes", "benefits"],
+                "correctIndex": 1,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Những hệ quả/tác động gián tiếp của sự nóng lên toàn cầu đối với an ninh lương thực là vô cùng đáng báo động.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>implications</i> (n-số nhiều): tác động kéo theo, hệ quả ngầm định phát sinh gián tiếp về sau.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn B. <i>consequences</i> (n-số nhiều): hệ quả, hậu quả kéo theo từ một nguyên nhân, sát nghĩa thực tế nhất.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. nguồn gốc ban đầu. C. nguyên nhân trực tiếp. D. lợi ích quyền lợi.</div>"
+            },
+            {
+                "section": "Synonyms (Từ Đồng Nghĩa)",
+                "question": "Scientists have found that certain fungi can <u>decompose</u> plastic waste over time.",
+                "options": ["produce", "preserve", "synthesize", "break down"],
+                "correctIndex": 3,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Các nhà khoa học phát hiện ra rằng một số loại nấm có thể phân hủy rác thải nhựa theo thời gian.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>decompose</i> (v): phân hủy hữu cơ, làm mục nát phân rã thành tố sinh học.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn D. <i>break down</i> (phrasal verb): phân rã, bẻ gãy cấu trúc phân tử làm phân hủy vật chất $\equiv$ decompose.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. sản xuất chế tạo. B. bảo tồn gìn giữ. C. tổng hợp chất hóa học.</div>"
+            },
+            {
+                "section": "Synonyms (Từ Đồng Nghĩa)",
+                "question": "The once-thriving wetland has been reduced to a <u>desiccated</u> expanse, a grim testament to the unchecked extraction of groundwater and prolonged droughts.",
+                "options": ["parched", "stagnant", "wizened", "sodden"],
+                "correctIndex": 0,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Vùng đất ngập nước từng một thời phát triển trù phú giờ đã bị khử giảm thành một dải đất khô cằn nứt nẻ, một bằng chứng nghiệt ngã cho việc khai thác nước ngầm vô tội vạ và những trận hạn hán kéo dài.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>desiccated</i> (adj-mức độ cao học thuật): bị sấy khô, mất hết sạch nước, khô cằn nứt nẻ chết chóc do thiếu nước.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn A. <i>parched</i> (adj): khô khát, cháy bừng vì nắng nóng hạn hán, đồng nghĩa sắc thái tuyệt vời.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> B. stagnant (ứ đọng bốc mùi - dùng cho nước tù). C. wizened (nhăn nheo héo hon - dùng cho làn da cụ già hoặc quả khô). D. sodden (ướt sũng đẫm nước).</div>"
+            },
+
+            // PART 2: ANTONYMS
+            {
+                "section": "Antonyms (Từ Trái Nghĩa)",
+                "question": "The new environmental regulations were praised for being <u>stringent</u> and effective.",
+                "options": ["rigorous", "flexible", "tough", "severe"],
+                "correctIndex": 1,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Quy định môi trường mới được khen ngợi vì tính nghiêm khắc và hiệu quả cao.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>stringent</i> (adj): nghiêm ngặt, khắt khe chặt chẽ pháp luật kỷ cương $\rightarrow$ Cần tìm từ trái nghĩa (linh hoạt, co giãn xuề xòa).</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn B. <i>flexible</i> (adj): linh hoạt, mềm dẻo dễ thay đổi thích ứng, trái nghĩa hoàn toàn tính cứng nhắc khắt khe pháp luật.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. khắt khe (đồng nghĩa). C. cứng rắn hung dữ (đồng nghĩa). D. khắc nghiệt nghiêm trọng (đồng nghĩa).</div>"
+            },
+            {
+                "section": "Antonyms (Từ Trái Nghĩa)",
+                "question": "The ecological footprint of traditional, small-scale subsistence farming is often deemed <u>negligible</u> compared to industrial monoculture.",
+                "options": ["momentous", "trivial", "insignificant", "marginal"],
+                "correctIndex": 0,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Dấu chân sinh thái của canh tác nông nghiệp tự cấp nhỏ lẻ truyền thống thường được coi là không đáng kể so với canh tác độc canh quy mô công nghiệp.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>negligible</i> (adj): không đáng kể, siêu nhỏ bé ít ỏi bỏ qua được $\rightarrow$ Cần tìm từ trái nghĩa (to lớn, trọng đại, quan trọng tác động lớn).</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn A. <i>momentous</i> (adj): quan trọng, trọng đại, có sức ảnh hưởng ghê gớm lâu dài về sau, đối lập sắc thái nhỏ bé bỏ qua của từ gốc.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> B. tầm thường nhỏ nhặt (đồng nghĩa). C. không quan trọng (đồng nghĩa). D. ở rìa biên không đáng kể (đồng nghĩa).</div>"
+            },
+            {
+                "section": "Antonyms (Từ Trái Nghĩa)",
+                "question": "The <u>abundance</u> of natural resources in the region led to rapid but unsustainable economic growth.",
+                "options": ["profusion", "opulence", "dearth", "wealth"],
+                "correctIndex": 2,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Sự dồi dào phong phú của tài nguyên thiên nhiên trong khu vực đã dẫn đến tăng trưởng kinh tế nhanh chóng nhưng không bền vững.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>abundance</i> (n): sự dồi dào, phong phú tràn trề số lượng $\rightarrow$ Cần tìm từ trái nghĩa (sự khan hiếm kiệt quệ đói kém nghèo nàn).</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn C. <i>dearth</i> (n): sự khát hiếm, sự thiếu thốn nghèo nàn trống trải của tài nguyên, trái nghĩa hoàn toàn.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. sự dồi dào tràn ngập (đồng nghĩa). B. sự giàu sang trù phú (đồng nghĩa). D. sự giàu có tiền tài (đồng nghĩa).</div>"
+            },
+            {
+                "section": "Antonyms (Từ Trái Nghĩa)",
+                "question": "After the volcanic eruption, the once fertile plains became a desolate wasteland, <u>devoid of</u> any signs of life for decades.",
+                "options": ["opulent", "forsaken", "teeming", "barren"],
+                "correctIndex": 2,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Sau vụ phun trào núi lửa, những đồng bằng từng màu mỡ đã trở thành một vùng đất hoang tàn hẻo lánh, hoàn toàn không có dấu vết của sự sống trong nhiều thập kỷ.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>devoid of</i> (adj): trống rỗng, hoàn toàn không chứa đựng, không có chút gì $\rightarrow$ Cần tìm từ trái nghĩa (tràn ngập, lúc nhúc, đầy rẫy).</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn C. <i>teeming</i> (adj-thường đi với giới từ with): đầy rẫy, lúc nhúc sinh vật, tràn ngập sức sống sinh sôi, trái nghĩa trực tiếp.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. giàu có sang trọng trù phú. B. bị bỏ hoang cô quạnh (đồng nghĩa). D. cằn cỗi trơ trụi.</div>"
+            },
+            {
+                "section": "Antonyms (Từ Trái Nghĩa)",
+                "question": "The government’s decision to allow industrial runoff into the delta was a <u>deleterious</u> blow to the local fish population.",
+                "options": ["innocuous", "salubrious", "pernicious", "detriments"],
+                "correctIndex": 0,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Quyết định của chính phủ cho phép dòng chảy rác thải công nghiệp tràn vào vùng đồng bằng sông là một cú đòn độc hại gây hại sâu sắc cho quần thể cá địa phương.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>deleterious</i> (adj-mức độ cao học thuật): độc hại, gây tổn hại nặng nề, tàn phá có hại $\rightarrow$ Cần tìm từ trái nghĩa (vô hại, lành tính lành lành).</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn A. <i>innocuous</i> (adj): vô hại, lành tính, không có khả năng gây tổn hại hay xúc phạm ai, đối lập tuyệt hảo. (Lưu ý: salubrious nghĩa là tốt cho sức khỏe/trong lành khí hậu - không dùng để tả tác động đối lập trực tiếp của cú đòn vật lý sinh thái).</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> B. lành mạnh tốt cho sức khỏe khí hậu. C. độc hại thâm hiểm (đồng nghĩa). D. gây hại tổn thất (viết sai từ loại danh từ số nhiều).</div>"
+            },
+            {
+                "section": "Antonyms (Từ Trái Nghĩa)",
+                "question": "The <u>detrimental</u> effects of noise pollution on marine mammals are often overlooked.",
+                "options": ["benign", "harmful", "damaging", "adverse"],
+                "correctIndex": 0,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Tác động tiêu cực/gây hại của ô nhiễm tiếng ồn lên động vật có vú biển thường bị xem nhẹ phớt lờ.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>detrimental</i> (adj): có hại, gây tổn hại $\rightarrow$ Cần tìm từ trái nghĩa (lành tính, tốt đẹp không gây hại).</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn A. <i>benign</i> (adj): lành tính, nhân từ, không gây hại tổn thương gì, trái nghĩa trực tiếp.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> B. có hại (đồng nghĩa). C. gây thiệt hại hại (đồng nghĩa). D. bất lợi tiêu cực (đồng nghĩa).</div>"
+            },
+            {
+                "section": "Antonyms (Từ Trái Nghĩa)",
+                "question": "Traditional knowledge of medicinal plants is <u>vanishing</u> as younger generations move to cities.",
+                "options": ["fading", "disappearing", "flourishing", "receding"],
+                "correctIndex": 2,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Tri thức truyền thống về cây dược liệu đang biến mất dần khi các thế hệ trẻ di chuyển ra thành phố lớn sinh sống.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>vanishing</i> (v-ing): biến mất phai mờ dần $\rightarrow$ Cần tìm từ trái nghĩa (phát triển rực rỡ, nở rộ hưng thịnh).</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn C. <i>flourishing</i> (v-ing): phát triển rực rỡ, hưng thịnh, nở rộ phồn vinh, trái nghĩa hoàn toàn.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. mờ nhạt dần (đồng nghĩa). B. biến mất (đồng nghĩa). D. rút lui lùi xa khuất dần.</div>"
+            },
+            {
+                "section": "Antonyms (Từ Trái Nghĩa)",
+                "question": "The air quality in the industrial zone remains <u>deplorable</u> despite recent efforts to improve it.",
+                "options": ["wretched", "excellent", "awful", "miserable"],
+                "correctIndex": 1,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Chất lượng không khí ở khu công nghiệp vẫn tồi tệ đáng báo động bất chấp những nỗ lực cải thiện gần đây.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>deplorable</i> (adj): tồi tệ, thảm hại, đáng bị lên án chê trách cực đoan $\rightarrow$ Cần tìm từ trái nghĩa (xuất sắc, tuyệt vời tốt lành).</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn B. <i>excellent</i> (adj): xuất sắc, hoàn hảo tuyệt vời, từ trái nghĩa duy nhất mang sắc thái tốt đẹp.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. khốn khổ tồi tàn (đồng nghĩa). C. kinh khủng tồi tệ (đồng nghĩa). D. khổ sở đáng thương (đồng nghĩa).</div>"
+            },
+            {
+                "section": "Antonyms (Từ Trái Nghĩa)",
+                "question": "To prevent the collapse of the ecosystem, we must stop the <u>wanton</u> destruction of the ancient redwoods.",
+                "options": ["profligate", "circumspect", "gratuitous", "heedless"],
+                "correctIndex": 1,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Để ngăn chặn sự sụp đổ của hệ sinh thái, chúng ta phải dừng việc tàn phá vô lý/bừa bãi vô cớ đối với các cây gỗ đỏ cổ thụ.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>wanton</i> (adj): vô cớ, bừa bãi cố ý gây ác ý tổn hại mà không màng hậu quả đạo đức $\rightarrow$ Cần tìm từ trái nghĩa (thận trọng, suy xét kỹ lưỡng hậu quả trước sau).</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn B. <i>circumspect</i> (adj): thận trọng, cẩn mật, luôn suy xét kỹ càng mọi khía cạnh rủi ro trước khi hành động, đối lập với sự bừa bãi cố ý tàn phá của wanton.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. hoang phí vô độ. C. vô cớ cho không (đồng nghĩa). D. lơ là thiếu chú ý không để tâm (đồng nghĩa).</div>"
+            },
+            {
+                "section": "Antonyms (Từ Trái Nghĩa)",
+                "question": "Rampant industrialization has inevitably led to the widespread <u>despoliation</u> of vast natural landscapes.",
+                "options": ["degradation", "depletion", "conservation", "contamination"],
+                "correctIndex": 2,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Công nghiệp hóa tràn lan đã dẫn đến sự cướp bóc/tàn phá diện rộng các cảnh quan thiên nhiên bao la một cách không tránh khỏi.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>despoliation</i> (n): sự cướp bóc, tước đoạt tàn phá, làm trơ trụi hủy hoại nghiêm trọng hệ sinh thái $\rightarrow$ Cần tìm từ trái nghĩa (sự bảo tồn, gìn giữ nâng niu).</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn C. <i>conservation</i> (n): sự bảo tồn thiên nhiên hệ sinh thái, đi ngược lại hành vi tàn phá cướp bóc.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. sự suy thoái xuống cấp (đồng nghĩa). B. sự cạn kiệt (đồng nghĩa). D. sự nhiễm bẩn ô nhiễm (đồng nghĩa).</div>"
+            },
+            {
+                "section": "Antonyms (Từ Trái Nghĩa)",
+                "question": "The soil has become <u>arid</u> due to years of intensive farming and lack of irrigation.",
+                "options": ["fertile", "parched", "dry", "barren"],
+                "correctIndex": 0,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Đất đai đã trở nên khô cằn do nhiều năm canh tác thâm canh và thiếu hệ thống tưới tiêu hợp lý.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>arid</i> (adj): khô cằn, trơ trọi cằn cỗi vì thiếu nước $\rightarrow$ Cần tìm từ trái nghĩa (phì nhiêu màu mỡ nhiều dưỡng chất).</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn A. <i>fertile</i> (adj): phì nhiêu, màu mỡ tươi tốt, cặp từ phản nghĩa kinh điển của thổ nhưỡng học (arid vs fertile).</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> B. khô cháy hạn hán (đồng nghĩa). C. khô ráo (đồng nghĩa). D. cằn cỗi không sinh sản (đồng nghĩa).</div>"
+            },
+            {
+                "section": "Antonyms (Từ Trái Nghĩa)",
+                "question": "We must avoid <u>frivolous</u> consumption of water in areas prone to drought.",
+                "options": ["trivial", "careless", "extravagant", "essential"],
+                "correctIndex": 3,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Chúng ta phải tránh việc tiêu thụ nước phung phí phù phiếm/hoang phí không mục đích ở những khu vực dễ xảy ra hạn hán.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>frivolous</i> (adj): phù phiếm, nông nổi hoang phí vô bổ, không phục vụ nhu cầu thiết yếu cốt lõi $\rightarrow$ Cần từ trái nghĩa (thiết yếu, quan trọng cốt lõi).</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn D. <i>essential</i> (adj): cốt lõi, thiết yếu, sống còn quan trọng, trái nghĩa với tính phù phiếm vô bổ.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. nhỏ nhặt tầm thường (đồng nghĩa). B. bất cẩn vô ý. C. hoang phí quá độ (đồng nghĩa).</div>"
+            },
+            {
+                "section": "Antonyms (Từ Trái Nghĩa)",
+                "question": "The <u>equilibrium</u> of the lake’s ecosystem was shattered by the introduction of a predatory fish.",
+                "options": ["harmony", "balance", "instability", "symmetry"],
+                "correctIndex": 2,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Sự cân bằng sinh thái của hồ đã bị phá vỡ hoàn toàn bởi việc đưa vào một loài cá săn mồi xâm lấn.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>equilibrium</i> (n): trạng thái cân bằng lực lượng động thái sinh thái $\rightarrow$ Cần tìm từ trái nghĩa (sự bất ổn định, chao đảo mất cân bằng).</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn C. <i>instability</i> (n): sự bất ổn, tính chao đảo không vững chắc ổn định, trái nghĩa trực tiếp.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. sự hòa hợp (đồng nghĩa). B. cân bằng (đồng nghĩa tuyệt đối). D. tính đối xứng hình học.</div>"
+            },
+            {
+                "section": "Antonyms (Từ Trái Nghĩa)",
+                "question": "The <u>dilapidated</u> state of the old dam poses a significant threat to the valley below.",
+                "options": ["decayed", "neglected", "brand-new", "ruined"],
+                "correctIndex": 2,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Tình trạng xuống cấp đổ nát của con đập cũ đặt ra một mối đe dọa lớn đối với thung lũng bên dưới.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>dilapidated</i> (adj): đổ nát, xập xệ rệu rã hư hỏng nặng $\rightarrow$ Cần tìm từ trái nghĩa (mới tinh, nguyên vẹn xuất xưởng).</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn C. <i>brand-new</i> (adj): mới toanh, mới tinh nguyên sơ vừa xuất xưởng xây xong, trái nghĩa hoàn toàn.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. mục nát thối rữa (đồng nghĩa). B. bị bỏ bê vô trách nhiệm (đồng nghĩa). D. bị hủy hoại nát bấy (đồng nghĩa).</div>"
+            },
+            {
+                "section": "Antonyms (Từ Trái Nghĩa)",
+                "question": "The soil’s <u>friable</u> texture makes it ideal for root vegetables but prone to wind erosion.",
+                "options": ["tenacious", "crumbly", "brittle", "pulverizable"],
+                "correctIndex": 0,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu gốc:</strong> Kết cấu đất dễ vụn nát tơi xốp khiến nó lý tưởng cho các loại rau củ ăn rễ nhưng lại dễ bị xói mòn do gió bão.</div><div class='exp-section'><strong>Bước 2 - Phân tích từ gạch chân:</strong> <i>friable</i> (adj-thuật ngữ nông học): bở, dễ bóp vụn, tơi xốp giòn nát ra tơi tả $\rightarrow$ Cần tìm từ trái nghĩa (có tính liên kết chặt chẽ kết tụ dai dẳng, dính chặt kiên cố dẻo dai).</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn A. <i>tenacious</i> (adj): bám chặt, ngoan cường bền bỉ, kết tụ dính chặt lấy nhau dai dẳng không chịu bẻ vụn, đối lập hoàn hảo thuộc tính bở tơi xốp của friable.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> B. dễ vụn bở (đồng nghĩa). C. giòn dễ gãy vỡ vụn (đồng nghĩa). D. dễ tán thành bột mịn (đồng nghĩa).</div>"
+            },
+
+            // PART 3: MULTIPLE CHOICE
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "Many species are on the _______ of extinction due to habitat loss.",
+                "options": ["margin", "verge", "boundary", "perimeter"],
+                "correctIndex": 1,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Nhiều loài sinh vật đang đứng bên bờ vực tuyệt chủng do mất đi môi trường sống tự nhiên.</div><div class='exp-section'><strong>Bước 2 - Phân tích colocation cố định:</strong> Cụm từ thành ngữ cố định diễn tả trạng thái sắp sửa trải qua một biến cố tiêu cực lớn: <b>on the verge of sth/doing sth</b> (trên bờ vực của cái gì).</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn B. <i>verge</i> để hoàn thành cụm giới từ cố định <b>on the verge of extinction</b> (trên bờ vực tuyệt chủng).</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. lề biên trang giấy. C. biên giới địa lý hành chính. D. chu vi hình học khu đất bao quanh.</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "The _______ of the ozone layer allows harmful UV rays to reach the Earth’s surface.",
+                "options": ["depletion", "reduction", "deduction", "compression"],
+                "correctIndex": 0,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Sự suy giảm/thủng của tầng ô-zôn cho phép các tia cực tím độc hại tiếp cận bề mặt Trái Đất.</div><div class='exp-section'><strong>Bước 2 - Phân tích thuật ngữ khí tượng khoa học:</strong> Hiện tượng lớp màng bảo vệ khí quyển bị sụt giảm độ dày mỏng đi hay thủng lỗ luôn gắn liền với cụm danh từ cố định học thuật.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn A. <i>depletion</i> (n). Tạo thành cụm thuật ngữ khoa học: <b>ozone depletion</b> / <b>depletion of the ozone layer</b> (sự suy giảm tầng ô-zôn).</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> B. sự giảm bớt chung chung số lượng tiền nông giá cả. C. sự khấu trừ tiền bạc hoặc suy luận logic. D. sự nén chặt nén khí.</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "Governments are being urged to reduce their carbon _______ to combat global warming.",
+                "options": ["effect", "release", "footprint", "impact"],
+                "correctIndex": 2,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Các chính phủ đang được kêu gọi khẩn thiết giảm bớt dấu chân carbon của họ để chống lại sự nóng lên toàn cầu.</div><div class='exp-section'><strong>Bước 2 - Phân tích colocation môi trường:</strong> Khái niệm đo lường tổng lượng khí nhà kính phát thải ra từ hoạt động trực tiếp gián tiếp của một quốc gia, cá nhân gọi là dấu chân carbon.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn C. <i>footprint</i> (n). Tạo thành thuật ngữ cố định: <b>carbon footprint</b> (dấu chân carbon).</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. hiệu ứng tác động. B. sự phóng thích xả thải. D. sự tác động va chạm mạnh.</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "The heavy rain caused the river to _______ its banks, flooding the nearby village.",
+                "options": ["overcome", "overstep", "overflow", "overwhelm"],
+                "correctIndex": 2,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Trận mưa lớn đã khiến con sông tràn bờ, gây ngập lụt toàn bộ ngôi làng lân cận.</div><div class='exp-section'><strong>Bước 2 - Phân tích hành vi của chất lỏng nguồn nước:</strong> Khi nước sông dâng cao quá giới hạn bờ đê đập và chảy tràn tự do ra ngoài đất liền, ta dùng động từ chuyên biệt cho chất lỏng.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn C. <i>overflow</i> (v): tràn ngập, chảy tràn qua mép bờ. Cụm từ cố định: <b>overflow its banks</b> (tràn bờ sông).</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. vượt qua khó khăn chướng ngại tâm lý. B. vượt quá giới hạn quyền lực luật lệ giẫm chân lên. D. áp đảo, tràn ngập cảm xúc quá tải đầu óc.</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "Exhaust _______ from cars are a major source of air pollution in cities.",
+                "options": ["gases", "fumes", "smokes", "vapors"],
+                "correctIndex": 1,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Khói thải từ xe hơi là nguồn gây ô nhiễm không khí chính yếu tại các đô thị thành phố lớn.</div><div class='exp-section'><strong>Bước 2 - Phân tích colocation rác thải động cơ:</strong> Hỗn hợp khí thải độc hại, có mùi khét sinh ra trực tiếp từ ống xả quá trình đốt nhiên liệu của phương tiện giao thông.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn B. <i>fumes</i> (n-số nhiều). Tạo thành colocation chuẩn xác: <b>exhaust fumes</b> (khói thải/khí thải động cơ xe).</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. khí ga khí thiên nhiên nói chung (không đi với tính từ exhaust tạo cụm từ khói xe chuyên biệt). C. khói bốc ra từ đám cháy củi lửa rơm rạ hoặc thuốc lá. D. hơi nước bốc lên từ chất lỏng nóng.</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "We must switch to _______ energy sources like solar and wind power.",
+                "options": ["reusable", "renewable", "recyclable", "repeatable"],
+                "correctIndex": 1,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Chúng ta phải chuyển đổi sang các nguồn năng lượng có thể tái tạo như năng lượng mặt trời và năng lượng gió.</div><div class='exp-section'><strong>Bước 2 - Phân tích ví dụ đi kèm:</strong> 'solar and wind power' (năng lượng mặt trời, gió) là dòng tài nguyên thiên nhiên vô tận tự làm đầy lại liên tục, không bao giờ bị cạn kiệt.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn B. <i>renewable</i> (adj): có thể tái tạo tự nhiên. Cụm từ <b>renewable energy</b> nghĩa là năng lượng tái tạo.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. có thể tái sử dụng nguyên xi nhiều lần (như túi vải, chai thủy tinh). C. có thể tái chế biến đổi định dạng vật lý rác thải (như nhựa, lon nhôm). D. có thể lặp đi lặp lại thí nghiệm hành vi.</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "The illegal _______ of elephants for their ivory is still a major problem.",
+                "options": ["poaching", "catching", "harvesting", "trapping"],
+                "correctIndex": 0,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Việc săn bắn bất hợp pháp loài voi để lấy ngà vẫn là một vấn nạn lớn nhức nhối.</div><div class='exp-section'><strong>Bước 2 - Phân tích hành vi tính chất pháp lý:</strong> Hành động săn giết động vật hoang dã trái phép để thu lợi thương mại lén lút (lấy ngà voi, sừng tê giác).</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn A. <i>poaching</i> (n): nạn săn trộm, săn bắn động vật quý hiếm bất hợp pháp.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> B. bắt giữ cá tôm động vật thông thường. C. thu hoạch mùa màng cây trái nông sản. D. đặt bẫy thú rừng chung chung.</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "A(n) _______ ecosystem is one that can maintain its diversity and productivity over time.",
+                "options": ["endurable", "sustainable", "bearable", "viable"],
+                "correctIndex": 1,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Một hệ sinh thái bền vững là hệ sinh thái có thể duy trì tính đa dạng và năng suất sản lượng của nó theo dòng thời gian lâu dài.</div><div class='exp-section'><strong>Bước 2 - Phân tích định nghĩa cốt lõi:</strong> Thuộc tính tự cân bằng, phát triển lâu đời không kiệt quệ tự hủy hoại của hệ sinh thái ('maintain diversity over time').</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn B. <i>sustainable</i> (adj): bền vững sinh thái học.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. có tính dẻo dai dai sức vật liệu cơ học chịu đựng. C. có thể cam chịu, chịu đựng nổi đau đớn thời tiết xấu. D. khả thi có thể sống sót hoạt động (thiên về phương án kinh tế, phôi thai y học sinh vật, ít đi trực tiếp bổ nghĩa mô tả hệ sinh thái bằng thuật ngữ sustainable).</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "Chemical waste from the factory was _______ directly into the sea.",
+                "options": ["exiled", "dismissed", "discharged", "evaporated"],
+                "correctIndex": 2,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Chất thải hóa học từ nhà máy đã bị xả thẳng trực tiếp ra biển.</div><div class='exp-section'><strong>Bước 2 - Phân tích cấu trúc động từ xả thải:</strong> Hành vi xả chất lỏng, khí độc, nước thải công nghiệp từ đường ống chảy tự do ra môi trường tự nhiên.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn C. <i>discharged</i> (v-ed): bị xả ra, tống ra môi trường (thường dùng bị động cho rác thải nước thải chất lỏng hóa chất).</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. bị lưu đày viễn xứ chính trị. B. bị giải tán, sa thải sa lưới việc làm, gạt bỏ ý kiến. D. bị bay hơi bốc hơi chất lỏng.</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "The region is suffering from a severe _______; it hasn’t rained for six months.",
+                "options": ["famine", "flood", "drought", "blizzard"],
+                "correctIndex": 2,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Khu vực này đang phải gánh chịu một trận hạn hán khốc liệt; trời đã không có một giọt mưa nào suốt sáu tháng qua.</div><div class='exp-section'><strong>Bước 2 - Phân tích nguyên nhân thời tiết:</strong> Hiện tượng thời tiết cực đoan khô hạn kéo dài, thiếu nước nghiêm trọng do 'hasn’t rained for six months' (không mưa nửa năm).</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn C. <i>drought</i> (n): nạn hạn hán.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. nạn đói kém thiếu lương thực. B. trận ngập lụt. D. trận bão tuyết mù mịt kèm gió lớn.</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "These insects are _______ to this specific rainforest and are found nowhere else.",
+                "options": ["indigenous", "exotic", "internal", "local"],
+                "correctIndex": 0,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Những loài côn trùng này là loài bản địa đặc hữu của khu rừng nhiệt đới cụ thể này và không được tìm thấy ở bất kỳ nơi nào khác trên thế giới.</div><div class='exp-section'><strong>Bước 2 - Phân tích đặc tính sinh học phân bố:</strong> Sinh vật sinh trưởng tự nhiên nguyên bản từ một vùng đất và độc quyền 'found nowhere else' (không nơi nào khác có) chính là loài bản địa đặc hữu.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn A. <i>indigenous</i> (adj): bản địa, đặc hữu tự nhiên sinh ra tại địa bàn đó.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> B. ngoại lai, kỳ lạ từ phương xa tới. C. thuộc nội bộ bên trong vật thể. D. thuộc địa phương (mang tính hành chính đời sống dân cư hẹp).</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "The _______ effect occurs when heat is trapped in the atmosphere by certain gases.",
+                "options": ["hothouse", "glasshouse", "greenhouse", "warehouse"],
+                "correctIndex": 2,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Hiệu ứng ________ xảy ra khi nhiệt lượng bị giữ lại trong bầu khí quyển bởi một số loại khí nhất định.</div><div class='exp-section'><strong>Bước 2 - Phân tích định nghĩa hiện tượng khí hậu:</strong> Cơ chế giữ nhiệt của Trái Đất do các khí CO2, CH4 tạo thành màng kính ngăn bức xạ nhiệt phản xạ ra ngoài không gian.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn C. <i>greenhouse</i> (n). Tạo thành thuật ngữ cố định toàn cầu: <b>greenhouse effect</b> (hiệu ứng nhà kính).</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> Các danh từ nhà kính nuôi cây, kho hàng bến bãi khác ráp vào không sinh ra thuật ngữ khí hậu này.</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "Pesticides can _______ the soil and groundwater, affecting the whole food chain.",
+                "options": ["contaminate", "infect", "purify", "dilute"],
+                "correctIndex": 0,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Thuốc trừ sâu có thể làm ô nhiễm/nhiễm độc đất và nước ngầm, gây ảnh hưởng đến toàn bộ chuỗi thức ăn.</div><div class='exp-section'><strong>Bước 2 - Phân tích tác động rác thải hóa chất:</strong> Hóa chất độc hại phá hoại làm vấy bẩn, biến chất môi trường tự nhiên sinh thái 'soil and groundwater'.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn A. <i>contaminate</i> (v): làm ô nhiễm, làm nhiễm độc chất độc hóa học vào môi trường tự nhiên phá hủy độ sạch.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> B. lây nhiễm dịch bệnh, vi-rút mầm bệnh y học sinh học vào cơ thể sống. C. làm sạch tinh khiết lọc trong. D. pha loãng nồng độ chất lỏng.</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "Many people choose organic food because it is grown without _______ fertilizers.",
+                "options": ["natural", "synthetic", "organic", "biological"],
+                "correctIndex": 1,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Nhiều người lựa chọn thực phẩm hữu cơ vì nó được trồng mà không sử dụng phân bón hóa học nhân tạo.</div><div class='exp-section'><strong>Bước 2 - Phân tích định nghĩa canh tác hữu cơ:</strong> Bản chất của thực phẩm organic là tuyệt đối cấm đoán bài trừ phân bón tổng hợp hóa học phòng thí nghiệm nhân tạo.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn B. <i>synthetic</i> (adj): tổng hợp nhân tạo hóa học. Cụm từ <b>synthetic fertilizers</b> có nghĩa là phân bón hóa học tổng hợp.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. thuộc tự nhiên. C. hữu cơ sinh học. D. thuộc sinh học y tế.</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "The _______ of the polar ice caps is a clear sign of rising global temperatures.",
+                "options": ["dissolving", "thawing", "softening", "melting"],
+                "correctIndex": 3,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Sự tan chảy của các tảng băng ở cực là một dấu hiệu rõ ràng cho thấy nhiệt độ toàn cầu đang gia tăng.</div><div class='exp-section'><strong>Bước 2 - Phân tích thuộc tính vật lý của băng:</strong> Quá trình băng tuyết rắn chuyển trạng thái lỏng do nhiệt độ cao nóng lên của khí hậu toàn cầu. Động từ phổ biến tự nhiên đi kèm 'polar ice caps' là melting.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn D. <i>melting</i> (n): sự tan chảy (do nhiệt độ). Tạo thành cụm từ cố định tự nhiên: <b>melting of the polar ice caps</b>. (Lưu ý: thawing thường dùng cho sự rã băng của mặt đất đóng băng vĩnh cửu permafrost hoặc tuyết đầu mùa chuyển sang xuân nhẹ nhàng, đối với đại khối băng trôi cực sụt giảm diện tích vật lý khổng lồ do ấm lên, melting là thuật ngữ chuẩn mực báo chí toàn cầu).</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. sự hòa tan chất rắn vào chất lỏng thành dung dịch (như muối đường vào nước). B. sự rã đông mặt đất đóng băng. C. sự làm cho mềm nhũn ra.</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "The sheer scale of the oil spill has caused _______ damage to the delicate coral reef ecosystem, which may take centuries to recover.",
+                "options": ["irreparable", "redundant", "frivolous", "superficial"],
+                "correctIndex": 0,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Quy mô khủng khiếp của vụ tràn dầu đã gây ra thiệt hại không thể cứu vãn cho hệ sinh thái rạn san hô mỏng manh, điều có thể mất hàng thế kỷ để phục hồi.</div><div class='exp-section'><strong>Bước 2 - Phân tích manh mối thời gian:</strong> 'take centuries to recover' (mất hàng thế kỷ mới phục hồi được) chứng tỏ mức độ tàn phá cực kỳ nặng nề, vĩnh viễn không thể sửa chữa chắp vá lại trong một sớm một chiều.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn A. <i>irreparable</i> (adj): không thể cứu vãn, không thể sửa chữa đền bù khôi phục lại trạng thái cũ $\equiv$ irreversible damage.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> B. dư thừa vô ích từ ngữ nhân lực. C. phù phiếm hoang phí nông nổi (như câu 12 phần trước). D. hời hợt trên bề mặt nông cạn ngoài da.</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "The government is under pressure to _______ subsidies for fossil fuel industries and invest more in renewables.",
+                "options": ["phase out", "pull down", "back off", "cut short"],
+                "correctIndex": 0,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Chính phủ đang chịu áp lực lớn phải cắt giảm/loại bỏ dần các khoản trợ cấp cho ngành công nghiệp nhiên liệu hóa thạch và đầu tư nhiều hơn vào năng lượng tái tạo.</div><div class='exp-section'><strong>Bước 2 - Phân tích định hướng chuyển dịch dòng tiền:</strong> Xu hướng cắt giảm từ từ theo từng giai đoạn lộ trình một chính sách kinh tế cũ để nhường chỗ cho năng lượng sạch.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn A. <i>phase out</i> (phrasal verb): giảm dần tiến tới loại bỏ hoàn toàn theo từng giai đoạn lộ trình cụ thể.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> B. phá dỡ sập một tòa nhà công trình kiến trúc. C. lùi bước, nhượng bộ rút lui tranh chấp. D. cắt ngang lời ai nói, làm ngắn bớt thời gian chương trình phát sóng.</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "The _______ of tropical rainforests leads to a significant loss of biodiversity.",
+                "options": ["afforestation", "deforestation", "reforestation", "forestry"],
+                "correctIndex": 1,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Nạn phá rừng nhiệt đới dẫn đến sự suy giảm nghiêm trọng của đa dạng sinh học.</div><div class='exp-section'><strong>Bước 2 - Phân tích hậu quả sinh thái:</strong> Hậu quả tiêu cực 'loss of biodiversity' (mất đa dạng sinh học) bắt nguồn từ hành vi chặt phá, hủy hoại rừng hàng loạt diện rộng.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn B. <i>deforestation</i> (n): nạn phá rừng, hành vi triệt hạ rừng bừa bãi.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. sự trồng rừng phủ xanh đất trống đồi trọc trên diện tích chưa từng có rừng. C. sự tái trồng rừng trên bãi đất rừng cũ bị phá hủy. D. lâm nghiệp ngành học nghề rừng.</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "Animals kept in _______ often suffer from stress and boredom.",
+                "options": ["captivity", "freedom", "isolation", "prison"],
+                "correctIndex": 0,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Động vật bị giam cầm nuôi nhốt thường phải chịu đựng sự căng thẳng và buồn chán tột cùng.</div><div class='exp-section'><strong>Bước 2 - Phân tích cụm từ trạng thái nuôi nhốt:</strong> Tình trạng thú hoang bị nhốt trong lồng cũi sở thú, mất tự do hoang dã. Cụm từ cố định: <b>keep in captivity</b> (bị nuôi nhốt/giam cầm).</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn A. <i>captivity</i> (n): tình trạng bị giam cầm, nuôi nhốt lồng kính chuồng trại thú.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> B. sự tự do phóng khoáng ngoài thiên nhiên. C. sự cô lập biệt lập xã hội nhân văn. D. nhà tù giam giữ phạm nhân con người (không dùng cho động vật hoang dã tự nhiên).</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "This organization works to _______ endangered species and their habitats.",
+                "options": ["reserve", "conserve", "deserve", "observe"],
+                "correctIndex": 1,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Tổ chức này hoạt động tích cực để bảo tồn các loài động vật đang gặp nguy hiểm và môi trường sống của chúng.</div><div class='exp-section'><strong>Bước 2 - Phân tích sứ mệnh tổ chức môi trường:</strong> Mục tiêu thiêng liêng đối với loài có nguy cơ tuyệt chủng 'endangered species' và hệ sinh thái là quản lý, gìn giữ bảo vệ lâu dài tránh biến mất tàn phá.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn B. <i>conserve</i> (v): bảo tồn, duy trì bảo vệ tài nguyên thiên nhiên động vật hoang dã khỏi bị tổn hại hoang phí.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. đặt chỗ trước nhà hàng vé máy bay/dự trữ nguồn hàng. C. xứng đáng nhận phần thưởng hình phạt. D. quan sát, theo dõi thí nghiệm bầu trời / tuân thủ luật lệ ngày lễ.</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "The air in the city center is _______ with smog and dust.",
+                "options": ["heavy", "thick", "dense", "laden"],
+                "correctIndex": 3,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Không khí ở trung tâm thành phố ngột ngạt/nặng trĩu vì khói bụi ô nhiễm và bụi bẩn.</div><div class='exp-section'><strong>Bước 2 - Phân tích cấu trúc ngữ pháp giới từ:</strong> Vị trí trống đi liền bồi đắp phía sau bởi giới từ 'with' tạo thành cấu trúc tính từ mang nghĩa chứa đầy, trĩu nặng, gánh gồng đầy rẫy yếu tố tiêu cực: <b>be laden with sth</b>.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn D. <i>laden</i> (adj): nặng trĩu, chứa đầy rẫy rác thải độc hại khí bụi ô nhiễm.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A, B, C đều có thể tả tính chất đặc quánh của không khí ô nhiễm nhưng cấu trúc đi kèm giới từ để bổ nghĩa trực tiếp cho tác nhân phía sau không tương thích tự nhiên bằng laden (ví dụ: dense with có tồn tại nhưng dense thiên về tả mật độ dày dặc sương mù che khuất tầm nhìn, khí bụi độc hại đè nặng bầu không khí đô thị dùng colocation laden with là xuất sắc nhất văn cảnh học thuật).</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "Disposable plastics are a major _______ in our oceans.",
+                "options": ["polluting", "pollution", "polluted", "pollutant"],
+                "correctIndex": 3,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Nhựa dùng một lần là một tác nhân gây ô nhiễm lớn trong các đại dương của chúng ta.</div><div class='exp-section'><strong>Bước 2 - Phân tích thành phần cấu trúc loại từ:</strong> Vị trí trống đứng sau tính từ bổ nghĩa 'major' và mạo từ 'a', đóng vai trò làm danh từ đếm được số ít chỉ vật thể tác nhân gây ra ô nhiễm.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn D. <i>pollutant</i> (n): chất gây ô nhiễm, tác nhân vấy bẩn môi trường sinh thái, đếm được số ít phù hợp mạo từ 'a'.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. hành vi đang gây ô nhiễm (v-ing). B. sự ô nhiễm, tình trạng ô nhiễm nói chung (danh từ không đếm được, không đi với mạo từ 'a' chỉ vật thể cụ thể như thế này). C. bị ô nhiễm (adj-v-ed).</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "Environmentalists are calling for a _______ on single-use plastic bags.",
+                "options": ["ban", "block", "barrier", "stop"],
+                "correctIndex": 0,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Các nhà môi trường học đang kêu gọi một lệnh cấm chính thức đối với túi nhựa sử dụng một lần.</div><div class='exp-section'><strong>Bước 2 - Phân tích cấu trúc giới từ đi kèm:</strong> Cấu trúc danh từ pháp lý đi kèm giới từ 'on' ban bố lệnh cấm đoán triệt để một mặt hàng mặt hàng tiêu dùng độc hại công cộng: <b>a ban on sth</b> (lệnh cấm đối với cái gì).</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn A. <i>ban</i> (n): lệnh cấm chính thức của luật pháp cơ quan chức năng.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> B. khối bê tông chặn đường / sự phong tỏa. C. rào cản vật lý vật cản trở giao thông địa hình. D. sự dừng lại (put a stop to sth - không đi trực tiếp cấu trúc mạo từ đơn lẻ với giới từ on kiểu này).</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "The oil _______ caused an ecological disaster along the coast.",
+                "options": ["drip", "spill", "leak", "flow"],
+                "correctIndex": 1,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Vụ tràn dầu trên biển đã gây ra một thảm họa sinh thái khủng khiếp dọc theo đường bờ biển.</div><div class='exp-section'><strong>Bước 2 - Phân tích thuật ngữ tai nạn hàng hải:</strong> Hiện tượng lượng dầu khổng lồ từ tàu chở dầu gặp nạn thoát vị tự do ra mặt biển diện rộng tạo lớp màng đầu triệt hạ sinh vật biển. Thuật ngữ cố định luôn là oil spill.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn B. <i>spill</i> (n). Cụm từ cố định tai nạn môi trường: <b>oil spill</b> (vụ tràn dầu biển).</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. sự nhỏ giọt chất lỏng chậm rãi từ vòi nước. C. sự rò rỉ lỗ kim khe hở nhỏ của đường ống (quy mô nhỏ hơn thảm họa spill đại dương). D. dòng chảy êm đềm tự nhiên của sông suối chất lỏng.</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "It is important to _______ waste by recycling and composting.",
+                "options": ["diminish", "shorten", "shrink", "minimize"],
+                "correctIndex": 3,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Việc cắt giảm giảm thiểu tối đa lượng rác thải bằng cách tái chế và ủ phân hữu cơ là vô cùng quan trọng.</div><div class='exp-section'><strong>Bước 2 - Phân tích colocation quản lý rác thải:</strong> Mục tiêu tối thượng của chiến lược môi trường xanh đối với lượng tổng rác thải sinh hoạt phát thải ra xã hội là hành động hạ thấp xuống mức tối thiểu nhất có thể.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn D. <i>minimize</i> (v): giảm thiểu đến mức tối đa, hạ thấp xuống mức đáy nhỏ nhất. Cụm từ <b>minimize waste</b> là thuật ngữ chuẩn mực trong quản lý môi trường.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. giảm bớt quy mô tầm ảnh hưởng quyền lực cảm xúc. B. rút ngắn chiều dài thời gian văn bản đoạn đường. C. co lại kích thước vật lý quần áo vải vóc do giặt sấy.</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "Many birds _______ south during the winter to find food and warmth.",
+                "options": ["settle", "migrate", "wander", "depart"],
+                "correctIndex": 1,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Nhiều loài chim di cư về phương nam suốt mùa đông để tìm kiếm thức ăn và hơi ấm tránh rét.</div><div class='exp-section'><strong>Bước 2 - Phân tích hành vi bản năng động vật:</strong> Hiện tượng di chuyển định kỳ theo mùa của các quần thể chim muông thú rừng giữa các vùng địa lý đại lục để sinh tồn khí hậu.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn B. <i>migrate</i> (v): di cư (đối với sinh vật động vật hoang dã bản năng).</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. định cư lâu dài sinh sống ổn định chỗ ở. C. đi lang thang vô định hướng không mục đích. D. khởi hành rời đi (thiên về tàu xe chuyến bay).</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "The soil in this area is very _______, making it perfect for farming.",
+                "options": ["barren", "sterile", "arid", "fertile"],
+                "correctIndex": 3,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Đất đai ở khu vực này vô cùng màu mỡ phì nhiêu, khiến nó trở nên hoàn hảo cho việc trồng trọt canh tác nông nghiệp.</div><div class='exp-section'><strong>Bước 2 - Phân tích hệ quả đi kèm:</strong> 'perfect for farming' (hoàn hảo cho nông nghiệp trồng trọt) đòi hỏi đất đai phải chứa nhiều dưỡng chất phù sa phì nhiêu màu mỡ.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn D. <i>fertile</i> (adj): phì nhiêu, màu mỡ tốt tươi dưỡng chất đất.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. cằn cỗi trơ trụi trơ cát trơ đá. B. vô trùng y tế / vô sinh sinh học không có khả năng sinh sản. C. khô cằn hoang mạc hoang hóa vì thiếu nước (như câu 11 phần trước).</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "We need to find a way to _______ of nuclear waste safely.",
+                "options": ["dump", "dispose", "discard", "throw"],
+                "correctIndex": 1,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Chúng ta cần tìm ra một phương pháp để xử lý/vứt bỏ rác thải hạt nhân một cách an toàn nghiêm ngặt.</div><div class='exp-section'><strong>Bước 2 - Phân tích cấu trúc giới từ:</strong> Vị trí trống đi kèm bắt buộc với giới từ 'of' đứng ngay phía sau tạo thành một cụm động từ hoàn chỉnh mang ý nghĩa vứt bỏ, xử lý rác thải tiêu hủy độc hại bài bản kỹ thuật: <b>dispose of sth</b>.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn B. <i>dispose</i> để tạo thành cấu trúc cụm động từ chính xác <b>dispose of nuclear waste</b> (xử lý tiêu hủy rác thải hạt nhân).</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> A. dump sth (ngoại động từ đi trực tiếp tân ngữ, mang nghĩa đổ trộm đổ bừa bãi rác xuống đất trái phép). C. discard sth (loại bỏ vứt bỏ thứ không dùng nữa trực tiếp tân ngữ, không đi với of). D. throw sth away (vứt rác sinh hoạt thông thường).</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "The coastal areas are particularly _______ to rising sea levels.",
+                "options": ["vulnerable", "defensive", "liable", "sensitive"],
+                "correctIndex": 0,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Các khu vực ven biển đặc biệt dễ bị tổn thương/tổn hại trước tình trạng mực nước biển dâng cao do biến đổi khí hậu.</div><div class='exp-section'><strong>Bước 2 - Phân tích cấu trúc ngữ pháp giới từ:</strong> Cấu trúc đi với giới từ 'to' mang ý nghĩa mong manh, dễ chịu tác động tàn phá nặng nề, chịu tổn thương trực diện trước hiểm họa: <b>be vulnerable to sth</b>.</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn A. <i>vulnerable</i> (adj): dễ bị tổn thương, yếu ớt trước sức tàn phá thiên tai.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> B. mang tính phòng thủ tự vệ chống trả. C. có khả năng chịu trách nhiệm pháp lý hoặc có xu hướng hành vi xấu xảy ra (be liable to do sth). D. nhạy cảm tinh tế (thường tả cảm xúc con người, làn da dị ứng hoặc thiết bị cảm biến kỹ thuật).</div>"
+            },
+            {
+                "section": "Vocabulary Multiple Choice (Trắc Nghiệm Từ Vựng)",
+                "question": "Using energy-efficient light bulbs is a simple way to _______ electricity.",
+                "options": ["conserve", "maintain", "store", "preserve"],
+                "correctIndex": 0,
+                "explanation": "<div class='exp-section'><strong>Bước 1 - Dịch nghĩa câu hỏi:</strong> Sử dụng bóng đèn tiết kiệm năng lượng là một cách đơn giản để tiết kiệm/bảo tồn nguồn điện năng tiêu thụ.</div><div class='exp-section'><strong>Bước 2 - Phân tích colocation với năng lượng điện nước:</strong> Hành động sử dụng khôn ngoan, tiết kiệm tối đa tránh lãng phí vô cớ nguồn năng lượng tài nguyên thiên nhiên quốc gia (điện, nước, khí đốt).</div><div class='exp-section'><strong>Bước 3 - Giải thích đáp án đúng:</strong> Chọn A. <i>conserve</i> (v): bảo tồn, tiết kiệm năng lượng tránh tiêu hao hoang phí. Cụm từ <b>conserve electricity</b> / <b>conserve energy</b> là colocation chuẩn mực giáo khoa.</div><div class='exp-section'><strong>Bước 4 - Giải thích đáp án khác:</strong> B. duy trì, bảo dưỡng máy móc hiện trạng trạng thái ổn định ổn định. C. tích trữ, lưu kho nguồn điện vào pin ắc quy vật lý. D. bảo tồn gìn giữ nguyên trạng giá trị văn hóa, di tích lịch sử hoặc đóng hộp thực phẩm ngâm muối đường tránh ôi thiu hỏng hóc.</div>"
+            }
+        ];
+
+        let processedQuizData = [];
+
+        function shuffleArray(array) {
+            let cur = array.length;
+            while (cur !== 0) {
+                let rand = Math.floor(Math.random() * cur); cur--;
+                [array[cur], array[rand]] = [array[rand], array[cur]];
+            }
+            return array;
+        }
+
+        function initQuiz() {
+            const wrapper = document.getElementById('quiz-wrapper');
+            wrapper.innerHTML = "";
+
+            let currentSection = "";
+
+            processedQuizData = rawQuizData.map((item, idx) => {
+                let indexedOpts = item.options.map((opt, oIdx) => ({ text: opt, originalIdx: oIdx }));
+                shuffleArray(indexedOpts);
+                let newCorrectIdx = indexedOpts.findIndex(o => o.originalIdx === item.correctIndex);
+                return {
+                    id: idx + 1,
+                    section: item.section,
+                    question: item.question,
+                    options: indexedOpts.map(o => o.text),
+                    correctIndex: newCorrectIdx,
+                    explanation: item.explanation,
+                    userAnswer: null
+                };
+            });
+
+            processedQuizData.forEach((item, index) => {
+                if (item.section !== currentSection) {
+                    currentSection = item.section;
+                    const sTitle = document.createElement('div');
+                    sTitle.className = "section-title";
+                    sTitle.innerText = currentSection;
+                    wrapper.appendChild(sTitle);
+                }
+
+                const card = document.createElement('div');
+                card.className = "quiz-card";
+                card.id = `card-${index}`;
+
+                const qText = document.createElement('div');
+                qText.className = "question-text";
+                qText.innerHTML = `<strong>Question ${index + 1}:</strong> ${item.question}`;
+                card.appendChild(qText);
+
+                const optContainer = document.createElement('div');
+                optContainer.className = "options-container";
+
+                item.options.forEach((optText, optIdx) => {
+                    const btn = document.createElement('button');
+                    btn.className = "option-btn";
+                    const prefix = String.fromCharCode(65 + optIdx);
+                    btn.innerText = `${prefix}. ${optText}`;
+                    btn.onclick = () => selectOption(index, optIdx, btn);
+                    optContainer.appendChild(btn);
+                });
+                card.appendChild(optContainer);
+
+                const expBox = document.createElement('div');
+                expBox.className = "explanation-box";
+                expBox.id = `exp-${index}`;
+                expBox.innerHTML = `
+                    <div class="explanation-title">🔍 GIẢI THÍCH CHI TIẾT TỪ MS LÊ HẰNG:</div>
+                    ${item.explanation}
+                `;
+                card.appendChild(expBox);
+
+                wrapper.appendChild(card);
+            });
+        }
+
+        function selectOption(qIdx, optIdx, clickedBtn) {
+            const qItem = processedQuizData[qIdx];
+            if (qItem.userAnswer !== null) return;
+
+            qItem.userAnswer = optIdx;
+            const card = document.getElementById(`card-${qIdx}`);
+            const buttons = card.querySelectorAll('.option-btn');
+
+            if (optIdx === qItem.correctIndex) {
+                clickedBtn.classList.add('correct');
+                playSound('correct');
+                createConfetti();
+            } else {
+                clickedBtn.classList.add('wrong');
+                buttons[qItem.correctIndex].classList.add('correct');
+                card.classList.add('shake');
+                playSound('wrong');
+            }
+
+            buttons.forEach(b => b.disabled = true);
+            document.getElementById(`exp-${qIdx}`).style.display = "block";
+        }
+
+        function submitQuiz() {
+            let correctCount = 0;
+            let totalCount = processedQuizData.length;
+            let answeredAll = true;
+
+            processedQuizData.forEach((item) => {
+                if (item.userAnswer === null) answeredAll = false;
+                else if (item.userAnswer === item.correctIndex) correctCount++;
+            });
+
+            if (!answeredAll) {
+                alert("Con ơi, hãy hoàn thành thử thách ở tất cả các câu hỏi trước khi nộp bài nhé! 😊");
+                return;
+            }
+
+            const percentage = (correctCount / totalCount) * 100;
+            let commentText = "";
+
+            if (percentage < 50) {
+                commentText = "Điểm lần này chưa cao lắm, con cố gắng đọc kỹ giải thích đáp án và làm lại nha. Cô tin con sẽ làm tốt hơn ở lần sau!.";
+            } else if (percentage >= 60 && percentage <= 80) {
+                commentText = "Con đã có tiến bộ khá ổn rồi, con cố gắng đọc kỹ giải thích đáp án và làm lại nha. Cô tin con sẽ làm tốt hơn ở lần sau!.";
+            } else if (percentage >= 90) {
+                commentText = "Làm tốt lắm, con cố gắng ring điểm 10 ở lần sau nha!.";
+                createConfetti();
+            }
+
+            document.getElementById('modalScoreText').innerText = `${correctCount} / ${totalCount}`;
+            document.getElementById('modalCommentText').innerText = commentText;
+            document.getElementById('scoreModal').style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById('scoreModal').style.display = "none";
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            initQuiz();
+        }
+
+        window.onload = initQuiz;
+    </script>
+</body>
+</html>
